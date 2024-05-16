@@ -20,10 +20,6 @@
         "value": "m2cmanid"
     },
 
-    "hostPoolType": {
-        "value": "Pooled"
-    },
-
 
     // Session host parameters
 
@@ -36,7 +32,7 @@
     },
 
     "domainjoinaccountpassword": {
-        "value": "Retro-4-Life-1985!"
+        "value": "YourPasswordHere!"
     },
 
     "localAdminUserName": {
@@ -44,7 +40,7 @@
     },
 
     "localAdminUserPassword": {
-        "value": "Pa$$W0rD!!@$"
+        "value": "YourPasswordHere!"
     },
 
     "ouPath": {
@@ -56,7 +52,7 @@
     },
 
     "subnetName": {
-        "value": ""
+        "value": "avdsubnet"
     },
 
     "vmPrefix": {
@@ -67,10 +63,7 @@
     },
 
     "vnetId": {
-        "value": ""
-    },
-    "miResourceGroupName": {
-        "value": "rg-shared-pl-bicep-test"
+        "value": "yourvnetid"
     }
   }
 }
