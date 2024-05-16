@@ -123,7 +123,7 @@
     },
 
     "domainjoinaccountpassword": {
-        "value": "Retro-4-Life-1985!"
+        "value": "YourOwnPasswordHere"
     },
 
     "localAdminUserName": {
@@ -131,7 +131,7 @@
     },
 
     "localAdminUserPassword": {
-        "value": "Pa$$W0rD!!@$"
+        "value": "YourOwnPasswordHere"
     },
 
     "ouPath": {
