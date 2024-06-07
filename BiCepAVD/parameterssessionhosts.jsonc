@@ -67,7 +67,7 @@
     },
 
     "vnetId": {
-        "value": "/subscriptions/6b322c20-c9c9-4b25-bc14-18eb4c65c47f/resourceGroups/rg-avd-pl-bicep-test/providers/Microsoft.Network/virtualNetworks/vn-m2cavd"
+        "value": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/rg-avd-pl-bicep-test/providers/Microsoft.Network/virtualNetworks/vn-m2cavd"
     },
     "miResourceGroupName": {
         "value": "rg-shared-pl-bicep-test"
