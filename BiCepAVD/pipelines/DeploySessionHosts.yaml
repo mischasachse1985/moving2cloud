@@ -1,0 +1,37 @@
+parameters:
+  - name: azureResourceManagerConnection
+    type: string
+  - name: location
+    type: string
+  - name: resourceGroupName
+    type: string
+  - name: subscriptionName
+    type: string
+
+
+stages:
+  - stage: DeploySessionHosts
+    displayName: Deploy Session Hosts
+    variables:
+      - name: azureServiceConnection
+        value: ${{ parameters.azureResourceManagerConnection }}
+      - name: location
+        value: ${{ parameters.location }}
+      - name: templateFile
+        value: "./mainsessionhosts.bicep"
+      - name: parameterFile
+        value: "./parameterssessionhosts.jsonc"
+
+    jobs:
+      - job: DeployAVDSharedResources
+        steps:
+          - task: AzureCLI@2
+            displayName: "Deploy Session Hosts"
+            inputs:
+              azureSubscription: ${{ parameters.azureResourceManagerConnection }}
+              scriptType: pscore
+              scriptLocation: inlineScript
+              inlineScript: |
+                $guid = New-Guid
+                az group create --name ${{ parameters.resourceGroupName }} --location ${{ parameters.location }} 
+                $result = az deployment group create --resource-group ${{ parameters.resourceGroupName }} --template-file $(templateFile) --parameters $(parameterFile) --name "DeploySessionHosts_$guid.guid" | ConvertFrom-Json

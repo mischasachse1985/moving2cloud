@@ -1,0 +1,76 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+
+    // General parameters used for multiple resources
+
+    "name": {
+        "value": "m2cavd"
+    },
+
+    "tags": {
+        "value": {
+            "M2C": "AVD",
+            "Environment": "TEST"
+        }
+    },
+
+    "managedIdentityName": {
+        "value": "m2cmanid"
+    },
+
+    "hostPoolType": {
+        "value": "Pooled"
+    },
+
+
+    // Session host parameters
+
+    "domain": {
+        "value": "m2c.local"
+    },
+
+    "domainjoinaccount": {
+        "value": "domainjoin@m2c.local"
+    },
+
+    "domainjoinaccountpassword": {
+        "value": "YourPasswordHere!"
+    },
+
+    "localAdminUserName": {
+        "value": "adminavd"
+    },
+
+    "localAdminUserPassword": {
+        "value": "YourPasswordHere!"
+    },
+
+    "ouPath": {
+        "value": "OU=Pooled Desktop,OU=AVD,OU=Devices,OU=M2C,DC=m2c,DC=local"
+    },
+
+    "sessionhostscount": {
+        "value": 2
+    },
+
+    "subnetName": {
+        "value": "sn-m2cavd"
+    },
+
+    "vmPrefix": {
+        "value": "m2cavd"
+    },
+    "VMsize": {
+        "value": "Standard_D2as_v5"
+    },
+
+    "vnetId": {
+        "value": "/subscriptions/6b322c20-c9c9-4b25-bc14-18eb4c65c47f/resourceGroups/rg-avd-pl-bicep-test/providers/Microsoft.Network/virtualNetworks/vn-m2cavd"
+    },
+    "miResourceGroupName": {
+        "value": "rg-shared-pl-bicep-test"
+    }
+  }
+}

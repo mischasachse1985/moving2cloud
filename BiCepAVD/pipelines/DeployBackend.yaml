@@ -1,0 +1,49 @@
+parameters:
+  - name: azureResourceManagerConnection
+    type: string
+  - name: location
+    type: string
+  - name: resourceGroupName
+    type: string
+  - name: subscriptionName
+    type: string
+  - name: stackName
+    type: string
+
+
+stages:
+  - stage: DeployBackendAVDresources
+    displayName: Deploy Backend AVD Resouces
+    variables:
+      - name: azureServiceConnection
+        value: ${{ parameters.azureResourceManagerConnection }}
+      - name: location
+        value: ${{ parameters.location }}
+      - name: templateFile
+        value: "./mainbackend.bicep"
+      - name: parameterFile
+        value: "./parametersbackend.jsonc"
+      - name: stackName
+        value: ${{ parameters.stackName }}
+
+    jobs:
+      - job: DeployBackendAVD
+        steps:
+          - task: AzureCLI@2
+            displayName: "Deploy Backend AVD"
+            inputs:
+              azureSubscription: ${{ parameters.azureResourceManagerConnection }}
+              scriptType: pscore
+              scriptLocation: inlineScript
+              inlineScript: |
+                $guid = New-Guid
+                az group create --name ${{ parameters.resourceGroupName }} --location ${{ parameters.location }} 
+                $result = az deployment group create --resource-group ${{ parameters.resourceGroupName }} --template-file $(templateFile) --parameters $(parameterFile) --name "DeployBackend_$guid.guid" | ConvertFrom-Json
+          - task: AzureCLI@2
+            displayName: "Create Deployment Stack"
+            inputs:
+              scriptType: bash
+              scriptLocation: inlineScript
+              connectedServiceNameARM: ${{ parameters.azureResourceManagerConnection }}
+              inlineScript: |
+                az stack group create --name ${{ parameters.stackName }} --resource-group ${{ parameters.resourceGroupName }} --template-file $(templateFile) --parameters $(parameterFile) --action-on-unmanage 'detachAll' --deny-settings-mode 'none'
