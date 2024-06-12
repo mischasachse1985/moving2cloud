@@ -23,7 +23,7 @@ stages:
         value: "./parameterssessionhosts.jsonc"
 
     jobs:
-      - job: DeployAVDSharedResources
+      - job: DeploySessionHostsAVD
         steps:
           - task: AzureCLI@2
             displayName: "Deploy Session Hosts"
